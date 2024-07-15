@@ -24,5 +24,6 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     // add quotes ' '
     "quotes": ["error", "single"],
+    "react/prop-types": [0]
   },
 }
