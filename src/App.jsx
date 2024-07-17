@@ -29,8 +29,14 @@ function App() {
     setItems(oldItems => [...oldItems, {
       title: newItem.title,
       text: newItem.text,
-      date: new Date(newItem.date)
+      date: new Date(newItem.date),
+      id: Math.max(...oldItems.map(item => item.id)) + 1
     }]);
+  }
+
+  const sortItems = (a, b) => {
+    if (a.date < b.date) return 1;
+    else return -1;
   }
 
   return (
@@ -39,8 +45,8 @@ function App() {
         <Header />
         <JournalAddButton />
         <JournalList>
-          {items.map((item, idx) => {
-            return <CardButton key={idx}>
+          {items.sort(sortItems).map((item) => {
+            return <CardButton key={item.id}>
               <JournalItem
                 title={item.title}
                 text={item.text}
