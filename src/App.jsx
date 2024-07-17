@@ -46,10 +46,10 @@ function App() {
             To be continued...
           </CardButton>
         </JournalList>
-        <Body>
-          <JournalForm />
-        </Body>
       </LeftPannel>
+      <Body>
+        <JournalForm />
+      </Body>
     </>
   );
 }
