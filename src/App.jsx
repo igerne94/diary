@@ -11,12 +11,15 @@ const INITIAL_DATA = [
     {
       title: 'Journal Item title 1',
       text: 'Lorem ipsum dolor sit amet',
-      date: new Date()
+      date: new Date(),
+      id: 1
+      
     },
     {
       title: 'Journal Item title 2',
       text: 'Lorem ipsum dolor sit amet 2',
-      date: new Date()
+      date: new Date(),
+      id: 2,
     }
 ];
   
