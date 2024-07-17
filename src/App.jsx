@@ -39,21 +39,26 @@ function App() {
     else return -1;
   }
 
+  let listItems = <p>No entry found</p>;
+  if (items.length > 0) {
+    listItems = items.sort(sortItems).map((item) => {
+      return <CardButton key={item.id}>
+        <JournalItem
+          title={item.title}
+          text={item.text}
+          date={item.date}
+        />
+      </CardButton>
+    })
+  }
+
   return (
     <>
       <LeftPannel>
         <Header />
         <JournalAddButton />
         <JournalList>
-          {items.sort(sortItems).map((item) => {
-            return <CardButton key={item.id}>
-              <JournalItem
-                title={item.title}
-                text={item.text}
-                date={item.date}
-              />
-            </CardButton>
-          })}
+          {listItems}
         </JournalList>
       </LeftPannel>
       <Body>
