@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 // import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
@@ -21,6 +22,14 @@ function App() {
       date: new Date()
     }
   ];
+
+  const [inputData, setInputData] = useState('');
+
+  const handleInput = (e) => {
+    setInputData(e.target.value);
+    console.log(inputData);
+  };
+
 
   return (
     <>
@@ -46,7 +55,9 @@ function App() {
             To be continued...
           </CardButton>
         </JournalList>
-        <Body/>
+        <Body>
+          <input type="text" onChange={handleInput} value={inputData} />
+        </Body>
       </LeftPannel>
     </>
   );
