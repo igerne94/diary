@@ -1,9 +1,7 @@
 import './App.css';
-import CardButton from './components/CardButton/CardButton';
 import Header from './components/Header/Header';
 import JournalAddButton from './components/JournalAddButton/JournalAddButton';
 import JournalForm from './components/JournalForm/JournalForm';
-import JournalItem from './components/JournalItem/JournalItem';
 import JournalList from './components/JournalList/JournalList';
 import Body from './layouts/body/Body';
 import LeftPannel from './layouts/leftPannel/LeftPannel';
@@ -30,26 +28,8 @@ function App() {
       title: newItem.title,
       text: newItem.text,
       date: new Date(newItem.date),
-      id: Math.max(...oldItems.map(item => item.id)) + 1
+      id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
     }]);
-  }
-
-  const sortItems = (a, b) => {
-    if (a.date < b.date) return 1;
-    else return -1;
-  }
-
-  let listItems = <p>No entry found</p>;
-  if (items.length > 0) {
-    listItems = items.sort(sortItems).map((item) => {
-      return <CardButton key={item.id}>
-        <JournalItem
-          title={item.title}
-          text={item.text}
-          date={item.date}
-        />
-      </CardButton>
-    })
   }
 
   return (
@@ -57,9 +37,7 @@ function App() {
       <LeftPannel>
         <Header />
         <JournalAddButton />
-        <JournalList>
-          {listItems}
-        </JournalList>
+        <JournalList items={items}/>
       </LeftPannel>
       <Body>
         <JournalForm onSubmit={ addItem } />

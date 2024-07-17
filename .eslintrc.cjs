@@ -16,10 +16,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    // add semi colon
-    "semi": ["error", "always", {
-      "omitLastInOneLineBlock": false
-    }],
+    // // add semi colon
+    // "semi": ["error", "always", {
+    //   "omitLastInOneLineBlock": false
+    // }],
     // removes last comma
     "comma-dangle": ["error", "never"],
     // add quotes ' '
