@@ -19,7 +19,7 @@ const INITIAL_DATA = [
       title: 'Journal Item title 2',
       text: 'Lorem ipsum dolor sit amet 2',
       date: new Date(),
-      id: 2,
+      id: 2
     }
 ];
   
