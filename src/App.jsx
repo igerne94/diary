@@ -36,10 +36,16 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (items.length) {
+      localStorage.setItem('data', JSON.stringify(items));
+    }
+  }, [items]);
+
   const addItem = newItem => {
     setItems(oldItems => [...oldItems, {
       title: newItem.title,
-      text: newItem.text,
+      post: newItem.post,
       date: new Date(newItem.date),
       id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
     }]);
