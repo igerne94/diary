@@ -5,27 +5,37 @@ import JournalForm from './components/JournalForm/JournalForm';
 import JournalList from './components/JournalList/JournalList';
 import Body from './layouts/body/Body';
 import LeftPannel from './layouts/leftPannel/LeftPannel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const INITIAL_DATA = [
-    {
-      title: 'Journal Item title 1',
-      text: 'Lorem ipsum dolor sit amet',
-      date: new Date(),
-      id: 1
+// const INITIAL_DATA = [
+//     {
+//       title: 'Journal Item title 1',
+//       text: 'Lorem ipsum dolor sit amet',
+//       date: new Date(),
+//       id: 1
       
-    },
-    {
-      title: 'Journal Item title 2',
-      text: 'Lorem ipsum dolor sit amet 2',
-      date: new Date(),
-      id: 2
-    }
-];
+//     },
+//     {
+//       title: 'Journal Item title 2',
+//       text: 'Lorem ipsum dolor sit amet 2',
+//       date: new Date(),
+//       id: 2
+//     }
+// ];
   
 function App() {
-  const [items, setItems] = useState(INITIAL_DATA);
-  
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('data'));
+    if (data) {
+      setItems(data.map(item => ({
+        ...item,
+        date: new Date(item.date)
+      })));
+    }
+  }, []);
+
   const addItem = newItem => {
     setItems(oldItems => [...oldItems, {
       title: newItem.title,
