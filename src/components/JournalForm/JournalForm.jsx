@@ -7,7 +7,7 @@ function JournalForm({ onSubmit }) {
 	const [formValidState, setFormValidsState] = useState({
 		title: true,
 		date: true,
-		text: true
+		post: true
 	});
 	
 	const addJournalItem = (e) => {
@@ -18,35 +18,55 @@ function JournalForm({ onSubmit }) {
 		if (!formProps.title?.trim().length) {
 			setFormValidsState(state => ({ ...state, title: false }))
 			isFormValid = false;
+		} else {
+			setFormValidsState(state => ({ ...state, title: true }))
 		}
 		if (!formProps.date) {
 			setFormValidsState(state => ({ ...state, date: false }))
 			isFormValid = false;
-
+		} else {
+			setFormValidsState(state => ({ ...state, date: true }))
 		}
-		if (!formProps.text?.trim().length) {
-			setFormValidsState(state => ({ ...state, text: false }))
+		if (!formProps.post?.trim().length) {
+			setFormValidsState(state => ({ ...state, post: false }))
 			isFormValid = false;
+		} else {
+			setFormValidsState(state => ({ ...state, post: true }))
 		}
-		if (!isFormValid) return true;
+		// if (!formProps.text?.trim().length) {
+		// 	setFormValidsState(state => ({ ...state, text: false }))
+		// 	isFormValid = false;
+		// } else {
+		// 	setFormValidsState(state => ({ ...state, text: true }))
+		// }
+		if (!isFormValid) return;
 		onSubmit(formProps);
 		console.log('formProps', formProps);
 	};
 	
-  return (
-	<form className={styles['journal-form']} onSubmit={addJournalItem}>
-		<input type="text" name='title' placeholder='title'
-			className={cn(styles['input'], {
-				[styles['invalid']]: !formValidState.title
-			})}
-		/>
-		<input type="date" name='date' className={`${styles.input} ${formValidState.date ? '' : styles['invalid']}`} />
-		<input type="text" name='tag' placeholder='tag'  />
-		<textarea name='text' id='' cols='30' placeholder='textarea' className={`${styles.input} ${formValidState.text ? '' : styles['invalid']}`} ></textarea>
-		<Button text="Save" onClick={() => {console.log('clicked!!');}}/>
-	</form>
-
-  );
+ return (
+		<form className={styles['journal-form']} onSubmit={addJournalItem}>
+			<div>
+				<input type='text' name='title' className={cn(styles['input-title'], { [styles['invalid']]: !formValidState.title })}/>
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="date" className={styles['form-label']}>
+					<img src='/calendar.svg' alt='Иконка календаря'/>
+					<span>Дата</span>
+				</label>
+				<input type='date' name='date' id="date" className={cn(styles['input'], { [styles['invalid']]: !formValidState.date })} />
+			</div>
+			<div className={styles['form-row']}>
+				<label htmlFor="tag" className={styles['form-label']}>
+					<img src='/folder.svg' alt='Иконка папки'/>
+					<span>Метки</span>
+				</label>
+				<input type='text' id="tag" name='tag' className={cn(styles['input'])}/>
+			</div>
+			<textarea name="post" id="" cols="30" rows="10" className={cn(styles['input'], {[styles['invalid']]: !formValidState.post})}></textarea>
+			<Button text="Сохранить" />
+		</form>
+	);
 }
 
 export default JournalForm;
