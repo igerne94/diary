@@ -25,7 +25,8 @@ function JournalForm({ onSubmit }) {
 		if (isFormReadyToSubmit) {
 			onSubmit(values);
 		}
-	}, [isFormReadyToSubmit, onSubmit, values])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isFormReadyToSubmit]) // mb use useCallback here later
 	
 	const addJournalItem = (e) => {
 		e.preventDefault();
@@ -41,7 +42,7 @@ function JournalForm({ onSubmit }) {
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
-					<img src='/src/assets/calendar.svg' alt='Иконка календаря'/>
+					<img src='src/assets/calendar.svg' alt='Иконка календаря'/>
 					<span>Дата</span>
 				</label>
 				<input type='date' name='date' id="date" className={cn(styles['input'], { [styles['invalid']]: !isValid.date })} />
