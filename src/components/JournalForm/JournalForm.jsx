@@ -41,14 +41,14 @@ function JournalForm({ onSubmit }) {
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
-					<img src='/calendar.svg' alt='Иконка календаря'/>
+					<img src='/src/assets/calendar.svg' alt='Иконка календаря'/>
 					<span>Дата</span>
 				</label>
 				<input type='date' name='date' id="date" className={cn(styles['input'], { [styles['invalid']]: !isValid.date })} />
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
-					<img src='/folder.svg' alt='Иконка папки'/>
+					<img src='src/assets/tag.svg' alt='Иконка папки'/>
 					<span>Метки</span>
 				</label>
 				<input type='text' id="tag" name='tag' className={cn(styles['input'])}/>
