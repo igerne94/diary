@@ -5,7 +5,7 @@ import JournalForm from './components/JournalForm/JournalForm';
 import JournalList from './components/JournalList/JournalList';
 import Body from './layouts/body/Body';
 import LeftPannel from './layouts/leftPannel/LeftPannel';
-import { useEffect, useState } from 'react';
+import { useLocalStorage } from './hooks/useLocalStorage.hook';
 
 //! Keep doublequoted when uncommented
 // const INITIAL_DATA = [
@@ -22,33 +22,22 @@ import { useEffect, useState } from 'react';
 //     "id": 2
 //   }
 // ];
+
+function mapItems(items) { 
+  if (!items) {
+    return [];
+  }
+  return items.map(i => ({
+      ...i,
+      date: new Date(i.date)
+    }))
+}
   
 function App() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const data = localStorage.getItem('data');
-    try {
-      const parsedData = JSON.parse(data);
-       if (parsedData) {
-        setItems(parsedData.map(item => ({
-          ...item,
-          date: new Date(item.date)
-        })));
-      } 
-    } catch (e) {
-      console.log('Error parsing data from local storage', e);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (items.length) {
-      localStorage.setItem('data', JSON.stringify(items));
-    }
-  }, [items]);
+  const [items, setItems] = useLocalStorage('data');
 
   const addItem = newItem => {
-    setItems(oldItems => [...oldItems, {
+    setItems([...mapItems(items), {
       title: newItem.title,
       post: newItem.post,
       date: new Date(newItem.date),
@@ -61,7 +50,7 @@ function App() {
       <LeftPannel>
         <Header />
         <JournalAddButton />
-        <JournalList items={items}/>
+        <JournalList items={ mapItems(items) }/>
       </LeftPannel>
       <Body>
         <JournalForm onSubmit={ addItem } />
