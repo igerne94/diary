@@ -26,8 +26,7 @@ function JournalForm({ onSubmit }) {
 			onSubmit(values);
 			dispatchForm({ type: 'CLEAR' });
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isFormReadyToSubmit]) // mb use useCallback here later
+	}, [isFormReadyToSubmit, onSubmit, values]) // mb use useCallback here later
 	
 	const addJournalItem = (e) => {
 		e.preventDefault();
