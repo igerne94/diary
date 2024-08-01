@@ -6,6 +6,7 @@ import JournalList from './components/JournalList/JournalList';
 import Body from './layouts/body/Body';
 import LeftPannel from './layouts/leftPannel/LeftPannel';
 import { useLocalStorage } from './hooks/useLocalStorage.hook';
+import { UserContext } from './context/UserContext';
 
 //! Keep doublequoted when uncommented
 // const INITIAL_DATA = [
@@ -46,16 +47,18 @@ function App() {
   }
 
   return (
-    <>
-      <LeftPannel>
-        <Header />
-        <JournalAddButton />
-        <JournalList items={ mapItems(items) }/>
-      </LeftPannel>
-      <Body>
-        <JournalForm onSubmit={ addItem } />
-      </Body>
-    </>
+    <UserContext.Provider value={{ userId: 1}}>
+      <div className="app">
+        <LeftPannel>
+          <Header />
+          <JournalAddButton />
+          <JournalList items={ mapItems(items) }/>
+        </LeftPannel>
+        <Body>
+          <JournalForm onSubmit={ addItem } />
+        </Body>
+      </div>
+    </UserContext.Provider>
   );
 }
 
