@@ -1,6 +1,6 @@
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
-import { useReducer, useEffect, useRef } from 'react';
+import { useReducer, useEffect, useRef, useContext } from 'react';
 import cn from 'classnames';
 import { formReducer, INITIAL_STATE } from './JournalForm.state';
 import Input from '../Input/Input';
@@ -13,6 +13,7 @@ function JournalForm({ onSubmit }) {
 	const titleRef = useRef();
 	const dateRef = useRef();
 	const postRef = useRef();
+	const { userId } = useContext(UserContext);
 
 	const focusOnInvalidField = (isValid) => {
 		switch (true) {
@@ -64,10 +65,11 @@ function JournalForm({ onSubmit }) {
 	};
 	
 	return (
-		<UserContext.Consumer>
-			{(context) => (
+		// <UserContext.Consumer>
+		// 	{(context) => (
 				<form className={styles['journal-form']} onSubmit={addJournalItem}>
-					{context.userId}
+			{/* {context.userId} */}
+					{userId}
 					<div>
 						<Input
 							type='text'
@@ -110,8 +112,8 @@ function JournalForm({ onSubmit }) {
 					<textarea name="post" ref={postRef} id="" cols="30" rows="10" value={values.post} onChange={onChange} className={cn(styles['input'], {[styles['invalid']]: !isValid.post})}></textarea>
 					<Button text="Сохранить" />
 				</form>
-			)}
-		</UserContext.Consumer>
+		// 	)}
+		// </UserContext.Consumer>
 	);
 }
 
