@@ -64,12 +64,16 @@ function JournalForm({ onSubmit }) {
 		});
 	};
 	
+	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+	}, [userId]);
+	
 	return (
 		// <UserContext.Consumer>
 		// 	{(context) => (
 				<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			{/* {context.userId} */}
-					{userId}
+					{/* {userId} */}
 					<div>
 						<Input
 							type='text'

@@ -39,10 +39,9 @@ function App() {
 
   const addItem = newItem => {
     setItems([...mapItems(items), {
-      title: newItem.title,
-      post: newItem.post,
+      ...newItem,
       date: new Date(newItem.date),
-      id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
+      id: items?.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1
     }]);
   }
 

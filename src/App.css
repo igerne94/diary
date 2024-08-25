@@ -1,6 +1,7 @@
 .app {
 	display: flex;
 	padding: 30px;
+  background-color: dimgray;
 }
 
 #root {
