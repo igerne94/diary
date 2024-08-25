@@ -7,6 +7,7 @@ import Body from './layouts/body/Body';
 import LeftPannel from './layouts/leftPannel/LeftPannel';
 import { useLocalStorage } from './hooks/useLocalStorage.hook';
 import { UserContext } from './context/UserContext';
+import { useState } from 'react';
 
 //! Keep doublequoted when uncommented
 // const INITIAL_DATA = [
@@ -36,6 +37,7 @@ function mapItems(items) {
   
 function App() {
   const [items, setItems] = useLocalStorage('data');
+  const [userId, setUserId] = useState(1);
 
   const addItem = newItem => {
     setItems([...mapItems(items), {
@@ -47,7 +49,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ userId: 1}}>
+    <UserContext.Provider value={{ userId, setUserId }}>
       <div className="app">
         <LeftPannel>
           <Header />

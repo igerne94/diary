@@ -1,15 +1,12 @@
 import styles from './Header.module.css';
 import SelectUser from '../SelectUser/SelectUser';
 
-const Header = ({ changedUser }) => {
-    const changeUser = (e) => {
-        changedUser(e.target.value);
-    }
+const Header = () => {
     
     return (
         <>
             <img className={styles.logo} src='/logo.svg' alt='Logo' />
-            <SelectUser changeUser={changeUser} />
+            <SelectUser />
         </>
     );
 };
