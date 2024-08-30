@@ -22,13 +22,19 @@ export function formReducer(state, action) {
                 ...state,
                 values: {
                     ...state.values,
-                    ...action.payload
+                    ...action.payload // added userId
                 }
             };
         case 'CLEAR':
             return {
                 ...state,
-                values: INITIAL_STATE.values,
+                values: { // here clear fields explicitly except userId as of now
+                    ...state.values,
+                    post: INITIAL_STATE.values.post,
+                    title: INITIAL_STATE.values.title,
+                    date: INITIAL_STATE.values.date,
+                    tag: INITIAL_STATE.values.tag
+                },
                 isFormReadyToSubmit: false
             };
         case 'RESET_VALIDITY':
