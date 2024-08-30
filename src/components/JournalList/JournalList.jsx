@@ -8,7 +8,7 @@ import { UserContext } from '../../context/UserContext';
 function JournalList({ items }) {
     const { userId } = useContext(UserContext);
 
-    if (items.lenght === 0) {
+    if (items.length === 0) {
         return <p>No entry found</p>
     }
 
