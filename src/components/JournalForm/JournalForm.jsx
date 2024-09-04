@@ -113,7 +113,7 @@ function JournalForm({ onSubmit }) {
 				/>
 			</div>
 			<textarea name="post" ref={postRef} id="" cols="30" rows="10" value={values.post} onChange={onChange} className={cn(styles['input'], {[styles['invalid']]: !isValid.post})}></textarea>
-			<Button text="Save" />
+			<Button>Save</Button>
 		</form>
 	);
 }
