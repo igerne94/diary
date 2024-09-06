@@ -1,8 +1,27 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# The project description:
+This diary application is built using JavaScript (JS) and JSX, providing a user-friendly interface for managing journal entries. Key features include:
 
-Currently, two official plugins are available:
+- Create and save new entries: Users can create and store new entries directly in the browser using local storage.
+- View and filter entries: Users can view the filtered diary entries.
+- Update and delete entries: Existing entries can be easily updated or deleted as needed.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## The features used:
+- ### CSS modules
+- ### Hooks
+    #### UseState hook 
+    #### UseEffect hoook
+    #### UseReducer
+    #### UseRef
+    #### ForwardRef
+    #### Custom hooks
+    #### Context API and UseContext
+    #### Custom context
+    #### React.Memo
+    #### UseMemo
+    #### UseCallback
+    #### Batching, Planner state, Exhaustive deps
+
+
+
