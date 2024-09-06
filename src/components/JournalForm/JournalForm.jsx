@@ -68,8 +68,6 @@ function JournalForm({ onSubmit, cardData, onDelete }) {
 	}
 
 	const onChange = (e) => {
-		console.log(e.target.value, 'value')
-		console.log(e.target.name, 'name')
 		dispatchForm({
 			type: 'SET_VALUE', payload: {
 				[e.target.name]: e.target.value
