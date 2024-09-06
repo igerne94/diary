@@ -5,7 +5,7 @@ import { useContext, useMemo } from 'react';
 import { UserContext } from '../../context/UserContext';
 
 // Presentational component
-function JournalList({ items }) {
+function JournalList({ items, selectItem }) {
     const { userId } = useContext(UserContext);
     const sortItems = (a, b) => {
         if (a.date < b.date) return 1;
@@ -25,7 +25,7 @@ function JournalList({ items }) {
         {filteredAndSortedItems
             .map((item) => {
                 return (
-                    <CardButton key={item.id} >
+                    <CardButton key={item.id} onClick={() => selectItem(item)} >
                         <JournalItem
                             title={item.title}
                             post={item.post}

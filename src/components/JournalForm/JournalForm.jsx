@@ -6,7 +6,7 @@ import { formReducer, INITIAL_STATE } from './JournalForm.state';
 import Input from '../Input/Input';
 import { UserContext } from '../../context/UserContext';
 
-function JournalForm({ onSubmit }) {
+function JournalForm({ onSubmit, cardData }) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	// destructuring formState:
 	const { isValid, isFormReadyToSubmit, values } = formState;
@@ -29,6 +29,10 @@ function JournalForm({ onSubmit }) {
 		}
 	};
 
+	useEffect(() => {
+		if (cardData) dispatchForm({ type: 'SET_VALUE', payload: { ...cardData } });
+	}, [cardData]);
+
 	// Handles validity checks and reset if necessary
 	useEffect(() => {
 		let timerId;
@@ -48,8 +52,9 @@ function JournalForm({ onSubmit }) {
 		if (isFormReadyToSubmit) {
 			onSubmit(values);
 			dispatchForm({ type: 'CLEAR' });
+			dispatchForm({ type: 'SET_VALUE', payload: { userId } });
 		}
-	}, [isFormReadyToSubmit, onSubmit, values]) // mb use useCallback here later
+	}, [isFormReadyToSubmit, onSubmit, values, userId]) // mb use useCallback here later
 	
 	const addJournalItem = (e) => {
 		e.preventDefault();
@@ -94,7 +99,9 @@ function JournalForm({ onSubmit }) {
 					name='date'
 					id="date"
 					onChange={onChange}
-					value={values.date}
+					value={values.date ?
+						new Date(values.date).toISOString().slice(0, 10)
+						: ''}
 					isValid={isValid.date}
 					ref={dateRef}
 				/>
