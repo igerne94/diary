@@ -37,7 +37,7 @@ function mapItems(items) {
   
 function App() {
   const [items, setItems] = useLocalStorage('data');
-  const [selectedItem, setSelectedItem] = useState({});
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const addOrUpdateItem = newItem => {
     if (!newItem.id) {
@@ -69,14 +69,15 @@ function App() {
       <div className="app">
         <LeftPannel>
           <Header />
-          <JournalAddButton />
+          <JournalAddButton clearForm={() => setSelectedItem(null)} />
+          {/* //! fix this bug! /*When clicking on the "New Journal Entry" button, the form cleared, gives null for card and then tries to render the item with .date is null .*/}
           <JournalList items={mapItems(items)} selectItem={setSelectedItem} />
         </LeftPannel>
         <Body>
           <JournalForm
             onSubmit={addOrUpdateItem}
             cardData={selectedItem}
-            onDelete={deleteCard(selectedItem.id)}
+            onDelete={deleteCard(selectedItem?.id)} // !
           />
         </Body>
       </div>

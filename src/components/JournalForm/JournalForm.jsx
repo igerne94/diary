@@ -30,8 +30,12 @@ function JournalForm({ onSubmit, cardData, onDelete }) {
 	};
 
 	useEffect(() => {
-		if (cardData) dispatchForm({ type: 'SET_VALUE', payload: { ...cardData } });
-	}, [cardData]);
+		if (!cardData) {
+			dispatchForm({ type: 'CLEAR' });
+			dispatchForm({ type: 'SET_VALUE', payload: { userId } });
+		}
+		dispatchForm({ type: 'SET_VALUE', payload: { ...cardData } });
+	}, [cardData, userId]);
 
 	// Handles validity checks and reset if necessary
 	useEffect(() => {
@@ -92,7 +96,7 @@ function JournalForm({ onSubmit, cardData, onDelete }) {
 					appearance='title'
 					ref={titleRef}
 				/>
-				{cardData.id &&
+				{cardData?.id &&
 					<button
 						className={styles['delete']}
 						type='button'
